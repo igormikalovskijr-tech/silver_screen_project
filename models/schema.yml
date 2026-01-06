@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: stg_movie_catalogue
+    description: "Staging table with cleaned movie metadata."
+    columns:
+      - name: movie_id
+        description: "Unique identifier for each movie."
+        tests:
+          - not_null
+          - unique
+
+  - name: int_monthly_ticket_sales
+    description: "Monthly aggregated ticket sales by movie and location."
+    columns:
+      - name: movie_id
+        tests:
+          - not_null
+      - name: month
+        tests:
+          - not_null
+      - name: location
+        tests:
+          - not_null
+          
+
+  - name: fct_movie_monthly_performance
+    description: "Fact table with monthly performance metrics per movie and location."
+    columns:
+      - name: movie_id
+        tests:
+          - not_null
+      - name: month
+        tests:
+          - not_null
+      - name: location
+        tests:
+          - not_null
+      - name: tickets_sold
+        tests:
+          - not_null
+      - name: revenue
+        tests:
+          - not_null
